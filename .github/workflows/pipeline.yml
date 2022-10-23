@@ -24,9 +24,7 @@ jobs:
       - name: npm install
         run: npm install
       - name: test
-        with:
-          start: npm run start:test
-          run: npm run test
+        run: npm run test
   tag_release:
     if: ${{ github.event_name == 'push' }}
     needs: [simple_deployment_pipeline]
