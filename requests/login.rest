@@ -1,0 +1,50 @@
+post http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+
+"username": "michael",
+"password": "12345"
+
+}
+
+###
+post http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1pY2hhZWwiLCJpZCI6IjYzMGVlNjY5OTY4ZmY1YmE5OWFjMDQxYyIsImlhdCI6MTY2MzEyOTk2NSwiZXhwIjoxNjYzMTMzNTY1fQ.hRge1TvHWSOD29ZHZHrge0l1TTUhcyeV-duEq9SHhIs
+
+{
+
+  "title": "SPAMMM I SPAMM NOW SPAMMMMMMMMMMMMM VERSION 3.0 :)",
+  "author": "Michael",
+  "url": "d4haha355das",
+  "likes": 2
+
+}
+
+###
+delete http://localhost:3003/api/blogs/6310ac26b0f5f9784b5e77dc
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1pY2hhZWwiLCJpZCI6IjYzMGVlNjY5OTY4ZmY1YmE5OWFjMDQxYyIsImlhdCI6MTY2MzEyOTk2NSwiZXhwIjoxNjYzMTMzNTY1fQ.hRge1TvHWSOD29ZHZHrge0l1TTUhcyeV-duEq9SHhIs
+
+
+{
+
+
+}
+
+
+
+
+### comment
+
+post http://localhost:3003/api/comments
+Content-Type: application/json
+
+
+{
+
+  "content": "SPAMMM I SPAMM NOW SPAMMMMMMMMMMMMM VERSION 632253250 :)",
+
+
+}

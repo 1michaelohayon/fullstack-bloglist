@@ -1,0 +1,29 @@
+name: Hello World!
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Say Hello
+        run: |
+          echo "Hello World!"
+  date:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Now it is
+        run: |
+          date
+  list_directory_content:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Directory content
+        run: |
+          ls -l
