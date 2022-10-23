@@ -16,6 +16,11 @@ const mongoose = require("mongoose");
 
 logger.info("connecting to", config.MONGODB_URI);
 
+
+app.get('/health', (req, res) => {
+  res.send('ok')
+})
+
 mongoose
   .connect(config.MONGODB_URI)
   .then(() => {
