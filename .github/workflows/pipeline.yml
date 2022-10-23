@@ -10,7 +10,7 @@ on:
 
 
 env:
-  MONGODB_URI: ${{ secrets.MONGODB_URI }}
+  TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
 
 jobs:
   simple_deployment_pipeline:
@@ -24,6 +24,8 @@ jobs:
       - name: npm install
         run: npm install
       - name: test
+        with:
+          start: npm run start:test
         run: npm run test
   tag_release:
     if: ${{ github.event_name == 'push' }}
