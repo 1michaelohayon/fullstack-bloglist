@@ -1,0 +1,24 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  build:
+    if: ${{ !contains(join(github.event.commits.*.message), '#skip') && github.event_name == 'push'}}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "enigmatic-lowlands-46555"
+          heroku_email: "1michaelohayon@gmail.com"
+          healthcheck: "https://enigmatic-lowlands-46555.herokuapp.com/health"
+          checkstring: "ok"
+          rollbackonhealthcheckfailed: true
