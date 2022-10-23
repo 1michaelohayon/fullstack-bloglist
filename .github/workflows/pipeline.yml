@@ -1,0 +1,39 @@
+name: Deployment pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+
+env:
+  TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+  SECRET: ${{ secrets.SECRET }}
+
+  
+jobs:
+  simple_deployment_pipeline:
+    if: ${{ !contains(join(github.event.commits.*.message), '#skip') }}
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: npm install
+        run: npm install
+      - name: test
+        run: npm run test
+  tag_release:
+    if: ${{ github.event_name == 'push' }}
+    needs: [simple_deployment_pipeline]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.36.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          DEFAULT_BUMP: patch
